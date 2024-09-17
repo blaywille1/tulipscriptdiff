@@ -1,6 +1,5 @@
-// Определяем TableComponent как глобальную переменную
-window.TableComponent = {
-    render: function(container, data) {
+class TableComponent {
+    static render(container, data) {
         const table = document.createElement('table');
         table.border = "1";
 
@@ -29,4 +28,6 @@ window.TableComponent = {
 
         container.appendChild(table);
     }
-};
+}
+
+export default TableComponent;

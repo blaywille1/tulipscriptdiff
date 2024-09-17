@@ -4,21 +4,31 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: './src/app.js',
     output: {
-        path: path.resolve(__dirname, 'dist'), // Убедитесь, что путь корректен
-        filename: 'main.js'
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'main.js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
+        ],
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './src/index.html', // Убедитесь, что HTML-шаблон правильно настроен
-            filename: 'index.html'
-        })
+            template: './src/index.html',
+            filename: 'index.html',
+        }),
     ],
     devServer: {
         static: {
-            directory: path.join(__dirname, 'dist'), // Указываем, откуда сервер берет статические файлы
+            directory: path.join(__dirname, 'dist'),
         },
         compress: true,
         port: 9000,
-        open: true, // Автоматически откроет браузер
-    }
+    },
 };
